@@ -1,7 +1,6 @@
 # Download the version, assuming it is a tag
 # Just fail if it doesn't download
 before_install:
-  - echo "GROUP is: $GROUP"
   - echo "Downloading release jar for version $VERSION from `echo $GROUP | grep -oP '(?<=com\.github\.).*$'`/$ARTIFACT"
   - wget https://github.com/`echo $GROUP | grep -oP '(?<=com\.github\.).*$'`/$ARTIFACT/releases/download/$VERSION/release.jar -O release.jar
 
