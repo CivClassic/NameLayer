@@ -31,15 +31,15 @@
 
     <!-- Civcraft -->
     <dependency>
-      <groupId>vg.civcraft.mc.mercury</groupId>
+      <groupId>com.github.Lazersmoke</groupId>
       <artifactId>Mercury</artifactId>
-      <version>1.2.19</version>
+      <version>1.2.20</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>vg.civcraft.mc.civmodcore</groupId>
+      <groupId>com.github.Lazersmoke</groupId>
       <artifactId>CivModCore</artifactId>
-      <version>1.6.0</version>
+      <version>1.6.0-jitpack</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

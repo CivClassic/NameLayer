@@ -20,18 +20,18 @@
   </modules>
   
   <properties>
+    <finalName>${project.artifactId}-${project.version}</finalName>
     <releaseVersion>2.11.0</releaseVersion>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <repositories>
-    <repository>
-      <id>devoted-repo</id>
-      <url>https://build.devotedmc.com/plugin/repository/everything/</url>
-    </repository>
+  <build>
+    <finalName>${finalName}</finalName>
+  </build>
 
+  <repositories>
     <repository>
       <id>codecrafter47-repo</id>
       <url>http://nexus.codecrafter47.dyndns.eu/content/repositories/public/</url>
@@ -58,6 +58,10 @@
     <repository>
       <id>bungeecord-repo</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
     </repository>
   </repositories>
 
