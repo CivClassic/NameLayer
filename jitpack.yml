@@ -8,5 +8,4 @@ before_install:
   - wget https://github.com/`echo $GROUP | grep -oP '(?<=com\.github\.)\w+'`/NameLayer/releases/download/$VERSION/release.jar -O release.jar
 
 install:
-  - echo "Running command: mvn install:install-file -Dfile=release.jar -DartifactId=$ARTIFACT -DgroupId=$GROUP -Dversion=$VERSION -Dpackaging=jar"
   - mvn install:install-file -Dfile=release.jar -DartifactId=$ARTIFACT -DgroupId=$GROUP -Dversion=$VERSION -Dpackaging=jar
