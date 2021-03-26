@@ -53,6 +53,10 @@
       <id>civ-github-repo</id>
       <url>https://raw.githubusercontent.com/CivClassic/artifacts/master/</url>
     </repository>
+		<repository>
+			<id>papermc</id>
+			<url>https://papermc.io/repo/repository/maven-public/</url>
+		</repository>
   </repositories>
 
   <profiles>
