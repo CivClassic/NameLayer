@@ -15,24 +15,24 @@ import vg.civcraft.mc.namelayer.NameLayerPlugin;
 import vg.civcraft.mc.namelayer.database.AssociationList;
 import vg.civcraft.mc.namelayer.misc.ClassHandler;
 import vg.civcraft.mc.namelayer.misc.NameCleanser;
-import vg.civcraft.mc.namelayer.misc.ProfileInterface;
+import vg.civcraft.mc.namelayer.misc.PlayerNameModifier;
 
 public class AssociationListener implements Listener {
 
 	private AssociationList associations;
-
-	private ClassHandler ch;
-
-	private ProfileInterface game;
+	private PlayerNameModifier modifier;
 
 	public AssociationListener() {
 		Bukkit.getScheduler().runTaskLater(NameLayerPlugin.getInstance(), new Runnable() {
 
 			@Override
 			public void run() {
-				ch = ClassHandler.ch;
-				if (ClassHandler.properlyEnabled)
-					game = ch.getProfileClass();
+				try {
+					modifier = new PlayerNameModifier();
+				} catch (ClassNotFoundException | NoSuchFieldException | NoSuchMethodException e) {
+					// TODO: A proper logging library needs to be added.
+					e.printStackTrace();
+				}
 
 				associations = NameAPI.getAssociationList();
 			}
@@ -41,7 +41,7 @@ public class AssociationListener implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST)
-	public void OnPlayerJoin(PlayerJoinEvent event) {
+	public void onPlayerJoin(PlayerJoinEvent event) {
 		String playername = event.getPlayer().getName();
 		if(NameCleanser.isDirty(playername)) {
 			if(NameCleanser.isAlertOps()) {
@@ -61,7 +61,7 @@ public class AssociationListener implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.LOWEST)
-	public void OnPlayerLogin(PlayerLoginEvent event) {
+	public void onPlayerLogin(PlayerLoginEvent event) {
 		final Player player = event.getPlayer();
 		MojangNames.declareMojangName(player.getUniqueId(), player.getName());
 		String name = associations.getCurrentName(player.getUniqueId());
@@ -71,7 +71,7 @@ public class AssociationListener implements Listener {
 			name = associations.getCurrentName(player.getUniqueId());
 		}
 
-		if (game != null)
-			game.setPlayerProfle(player, name);
+		if (modifier != null)
+			modifier.modify(event.getPlayer());
 	}
 }
