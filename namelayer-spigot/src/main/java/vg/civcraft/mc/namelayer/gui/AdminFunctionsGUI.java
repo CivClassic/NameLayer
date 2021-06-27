@@ -36,6 +36,7 @@ public class AdminFunctionsGUI extends AbstractGroupGUI {
 		// linking
 		ItemStack linkStack = new ItemStack(Material.GOLD_INGOT);
 		ItemUtils.setDisplayName(linkStack, ChatColor.GOLD + "Link group");
+		linkStack.setCustomModelData(700);
 		Clickable linkClick;
 
 		ItemUtils.addLore(linkStack, ChatColor.RED
@@ -46,6 +47,7 @@ public class AdminFunctionsGUI extends AbstractGroupGUI {
 		// merging
 		ItemStack mergeStack = new ItemStack(Material.SPONGE);
 		ItemUtils.setDisplayName(mergeStack, ChatColor.GOLD + "Merge group");
+		mergeStack.setCustomModelData(701);
 		Clickable mergeClick;
 		
 		ItemUtils.addLore(mergeStack, ChatColor.RED
@@ -68,6 +70,7 @@ public class AdminFunctionsGUI extends AbstractGroupGUI {
 		ci.setSlot(mergeClick, 12);
 		// transferring group
 		ItemStack transferStack = new ItemStack(Material.PACKED_ICE);
+		transferStack.setCustomModelData(702);
 		ItemUtils.setDisplayName(transferStack, ChatColor.GOLD
 				+ "Transfer group to new primary owner");
 		Clickable transferClick;
@@ -86,6 +89,7 @@ public class AdminFunctionsGUI extends AbstractGroupGUI {
 		ci.setSlot(transferClick, 14);
 		// deleting group
 		ItemStack deletionStack = new ItemStack(Material.BARRIER);
+		deletionStack.setCustomModelData(703);
 		ItemUtils.setDisplayName(deletionStack, ChatColor.GOLD + "Delete group");
 		Clickable deletionClick;
 		if (gm.hasAccess(g, p.getUniqueId(),
@@ -165,6 +169,7 @@ public class AdminFunctionsGUI extends AbstractGroupGUI {
 				ClickableInventory confirmInv = new ClickableInventory(27,
 						g.getName());
 				ItemStack info = new ItemStack(Material.PAPER);
+				info.setCustomModelData(704);
 				ItemUtils.setDisplayName(info, ChatColor.GOLD + "Transfer group to "
 						+ playerName);
 				ItemUtils.addLore(info, ChatColor.RED
@@ -213,6 +218,7 @@ public class AdminFunctionsGUI extends AbstractGroupGUI {
 	private void showDeletionMenu() {
 		ClickableInventory confirmInv = new ClickableInventory(27, g.getName());
 		ItemStack info = new ItemStack(Material.PAPER);
+		info.setCustomModelData(712);
 		ItemUtils.setDisplayName(info, ChatColor.GOLD + "Delete group");
 		ItemUtils.addLore(info, ChatColor.RED + "Are you sure that you want to",
 				ChatColor.RED + "delete this group? You can not undo this!");

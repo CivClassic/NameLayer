@@ -94,6 +94,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 		// back button
 		if (currentPage > 0) {
 			ItemStack back = new ItemStack(Material.ARROW);
+			back.setCustomModelData(713);
 			ItemUtils.setDisplayName(back, ChatColor.GOLD + "Go to previous page");
 			Clickable baCl = new Clickable(back) {
 
@@ -110,6 +111,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 		// next button
 		if ((45 * (currentPage + 1)) <= clicks.size()) {
 			ItemStack forward = new ItemStack(Material.ARROW);
+			forward.setCustomModelData(714);
 			ItemUtils.setDisplayName(forward, ChatColor.GOLD + "Go to next page");
 			Clickable forCl = new Clickable(forward) {
 
@@ -177,6 +179,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 			final BlackList black = NameLayerPlugin.getBlackList();
 			for (final UUID uuid : black.getBlacklist(g)) {
 				ItemStack is = new ItemStack(Material.LEATHER_CHESTPLATE);
+				is.setCustomModelData(709);
 				LeatherArmorMeta meta = (LeatherArmorMeta) is.getItemMeta();
 				meta.setColor(Color.BLACK);
 				meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
@@ -227,6 +230,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 					.getGroupManagerDao().getInvitesForGroup(g.getName());
 			for (Entry<UUID, PlayerType> entry : invites.entrySet()) {
 				ItemStack is = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
+				is.setCustomModelData(727);
 				ItemMeta im = is.getItemMeta();
 				im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 				is.setItemMeta(im);
@@ -423,6 +427,18 @@ public class MainGroupGUI extends AbstractGroupGUI {
 											   final UUID toDisplay, PlayerType rank) {
 		Clickable c;
 		ItemStack is = new ItemStack(material);
+		switch(material) {
+			case LEATHER_CHESTPLATE:
+				is.setCustomModelData(715);
+			case GOLDEN_CHESTPLATE:
+				is.setCustomModelData(708);
+			case IRON_CHESTPLATE:
+				is.setCustomModelData(716);
+			case DIAMOND_CHESTPLATE:
+				is.setCustomModelData(717);
+			default:
+				//how
+		}
 		ItemMeta im = is.getItemMeta();
 		im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		is.setItemMeta(im);
@@ -473,6 +489,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 		String playerName = NameAPI.getCurrentName(uuid);
 
 		ItemStack info = new ItemStack(Material.PAPER);
+		info.setCustomModelData(728);
 		ItemUtils.setDisplayName(info, ChatColor.GOLD + playerName);
 		String rankName = getRankName(uuid);
 		ItemUtils.addLore(info, ChatColor.GOLD + "Current rank: " + rankName);
@@ -511,6 +528,18 @@ public class MainGroupGUI extends AbstractGroupGUI {
 									  final UUID toChange, final PlayerType pType) {
 		final PlayerType rank = g.getCurrentRank(toChange);
 		ItemStack mod = new ItemStack(slotMaterial);
+		switch (slotMaterial) {
+			case LEATHER_CHESTPLATE:
+				mod.setCustomModelData(715);
+			case GOLDEN_CHESTPLATE:
+				mod.setCustomModelData(708);
+			case IRON_CHESTPLATE:
+				mod.setCustomModelData(716);
+			case DIAMOND_CHESTPLATE:
+				mod.setCustomModelData(717);
+			default:
+				//please stop breaking
+		}
 		ItemMeta im = mod.getItemMeta();
 		im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		mod.setItemMeta(im);
@@ -806,6 +835,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 	private Clickable getPasswordClickable() {
 		Clickable c;
 		ItemStack is = new ItemStack(Material.OAK_SIGN);
+		is.setCustomModelData(729);
 		ItemUtils.setDisplayName(is, ChatColor.GOLD + "Add or change password");
 		if (gm.hasAccess(g, p.getUniqueId(),
 				PermissionType.getPermission("PASSWORD"))) {
@@ -915,6 +945,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 
 	private Clickable getInvitePlayerClickable() {
 		ItemStack inviteStack = new ItemStack(Material.COOKIE);
+		inviteStack.setCustomModelData(730);
 		ItemUtils.setDisplayName(inviteStack, ChatColor.GOLD + "Invite new member");
 		return new Clickable(inviteStack) {
 
@@ -968,6 +999,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 	
 	private Clickable getSuperMenuClickable() {
 		ItemStack is = new ItemStack(Material.DIAMOND);
+		is.setCustomModelData(731);
 		ItemUtils.setDisplayName(is, ChatColor.GOLD + "Return to overview for all your groups");
 		return new Clickable(is) {
 
@@ -981,6 +1013,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 
 	private Clickable getAdminStuffClickable() {
 		ItemStack is = new ItemStack(Material.DIAMOND);
+		is.setCustomModelData(732);
 		ItemUtils.setDisplayName(is, ChatColor.GOLD + "Owner functions");
 		return new Clickable(is) {
 
@@ -999,6 +1032,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 	private Clickable getLeaveGroupClickable() {
 		Clickable c;
 		ItemStack is = new ItemStack(Material.IRON_DOOR);
+		is.setCustomModelData(733);
 		ItemUtils.setDisplayName(is, ChatColor.GOLD + "Leave group");
 		if (g.isOwner(p.getUniqueId())) {
 			ItemUtils.addLore(is, ChatColor.RED + "You cant leave this group,",
@@ -1063,6 +1097,7 @@ public class MainGroupGUI extends AbstractGroupGUI {
 	private Clickable getInfoStack() {
 		Clickable c;
 		ItemStack is = new ItemStack(Material.PAPER);
+		is.setCustomModelData(734);
 		ItemUtils.setDisplayName(is, ChatColor.GOLD + "Stats for " + g.getName());
 		ItemUtils.addLore(is,
 				ChatColor.DARK_AQUA + "Your current rank: " + ChatColor.YELLOW

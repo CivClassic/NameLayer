@@ -40,6 +40,7 @@ public class InvitationGUI extends AbstractGroupGUI{
 		ClickableInventory ci = new ClickableInventory(27, g.getName());
 	
 		ItemStack explain = new ItemStack(Material.PAPER);
+		explain.setCustomModelData(726);
 		ItemUtils.setDisplayName(explain, ChatColor.GOLD + "Select an option");
 		ItemUtils.addLore(explain, ChatColor.AQUA + "Please select the rank ", ChatColor.AQUA + "you want the invited player to have");
 		ci.setSlot(new DecorationStack(explain), 4);
@@ -52,6 +53,18 @@ public class InvitationGUI extends AbstractGroupGUI{
 	
 	private Clickable produceOptionStack(Material item, String niceRankName, final PlayerType pType, PermissionType perm) {
 		ItemStack is = new ItemStack(item);
+		switch(item) {
+			case LEATHER_CHESTPLATE:
+				is.setCustomModelData(715);
+			case GOLDEN_CHESTPLATE:
+				is.setCustomModelData(708);
+			case IRON_CHESTPLATE:
+				is.setCustomModelData(716);
+			case DIAMOND_CHESTPLATE:
+				is.setCustomModelData(717);
+			default:
+				//uh
+		}
 		ItemMeta im = is.getItemMeta();
 		im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		is.setItemMeta(im);

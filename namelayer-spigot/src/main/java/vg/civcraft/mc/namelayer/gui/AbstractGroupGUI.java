@@ -67,19 +67,35 @@ public abstract class AbstractGroupGUI {
 	}
 	
 	public static ItemStack goBackStack() {
-		if (mats != null) return mats.getItemStack(MaterialInterface.Specific.BACK);
+		if (mats != null) {
+			ItemStack is = mats.getItemStack(MaterialInterface.Specific.BACK);
+			is.setCustomModelData(706);
+			return is;
+		}
 		return new ItemStack(Material.BARRIER); // common for now
 	}
 	public static ItemStack yesStack() {
-		if (mats != null) return mats.getItemStack(MaterialInterface.Specific.GREEN);
+		if (mats != null) {
+			ItemStack is = mats.getItemStack(MaterialInterface.Specific.GREEN);
+			is.setCustomModelData(705);
+			return is;
+		}
 		return new ItemStack(Material.BARRIER); // common for now
 	}
 	public static ItemStack noStack() {
-		if (mats != null) return mats.getItemStack(MaterialInterface.Specific.RED);
+		if (mats != null) {
+			ItemStack is = mats.getItemStack(MaterialInterface.Specific.RED);
+			is.setCustomModelData(707);
+			return is;
+		}
 		return new ItemStack(Material.BARRIER); // common for now
 	}
 	public static ItemStack modStack() {
-		if (mats != null) return mats.getItemStack(MaterialInterface.Specific.MOD);
+		if (mats != null) {
+			ItemStack is = mats.getItemStack(MaterialInterface.Specific.MOD);
+			is.setCustomModelData(708);
+			return is;
+		}
 		return new ItemStack(Material.BARRIER); // common for now
 	}
 	public Material modMat() {
@@ -87,11 +103,19 @@ public abstract class AbstractGroupGUI {
 		return Material.BARRIER; // common for now
 	}
 	public ItemStack blacklistStack() {
-		if (mats != null) return mats.getItemStack(MaterialInterface.Specific.BLACKLIST);
+		if (mats != null) {
+			ItemStack is = mats.getItemStack(MaterialInterface.Specific.BLACKLIST);
+			is.setCustomModelData(709);
+			return is;
+		}
 		return new ItemStack(Material.BARRIER); // common for now
 	}
 	public ItemStack permsStack() {
-		if (mats != null) return mats.getItemStack(MaterialInterface.Specific.PERMS);
+		if (mats != null) {
+			ItemStack is = mats.getItemStack(MaterialInterface.Specific.PERMS);
+			is.setCustomModelData(710);
+			return is;
+		}
 		return new ItemStack(Material.BARRIER); // common for now
 	}
 	public ItemStack mergeStack() {
@@ -99,7 +123,11 @@ public abstract class AbstractGroupGUI {
 		return new ItemStack(Material.BARRIER); // common for now
 	}
 	public ItemStack defaultStack() {
-		if (mats != null) return mats.getItemStack(MaterialInterface.Specific.DEFAULT);
+		if (mats != null) {
+			ItemStack is = mats.getItemStack(MaterialInterface.Specific.DEFAULT);
+			is.setCustomModelData(711);
+			return is;
+		}
 		return new ItemStack(Material.BARRIER); // common for now
 	}
 

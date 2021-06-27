@@ -59,6 +59,7 @@ public class PermissionManageGUI extends AbstractGroupGUI {
 				produceSelectionClickable(Material.DIAMOND_CHESTPLATE,
 						PlayerType.OWNER), 17);
 		ItemStack backStack = new ItemStack(Material.ARROW);
+		backStack.setCustomModelData(735);
 		ItemUtils.setDisplayName(backStack, ChatColor.GOLD
 				+ "Go back to member management");
 		ci.setSlot(new Clickable(backStack) {
@@ -74,6 +75,16 @@ public class PermissionManageGUI extends AbstractGroupGUI {
 	private Clickable produceSelectionClickable(Material mat,
 			final PlayerType pType) {
 		ItemStack is = new ItemStack(mat);
+		switch (mat) {
+			case LEATHER_CHESTPLATE:
+				is.setCustomModelData(715);
+			case GOLDEN_CHESTPLATE:
+				is.setCustomModelData(708);
+			case IRON_CHESTPLATE:
+				is.setCustomModelData(716);
+			case DIAMOND_CHESTPLATE:
+				is.setCustomModelData(717);
+		}
 		ItemMeta im = is.getItemMeta();
 		im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		is.setItemMeta(im);

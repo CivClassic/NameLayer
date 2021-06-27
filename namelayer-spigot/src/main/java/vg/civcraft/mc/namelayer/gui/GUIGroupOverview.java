@@ -95,6 +95,7 @@ public class GUIGroupOverview {
 		// previous button
 		if (currentPage > 0) {
 			ItemStack back = new ItemStack(Material.ARROW);
+			back.setCustomModelData(713);
 			ItemUtils.setDisplayName(back, ChatColor.GOLD + "Go to previous page");
 			Clickable baCl = new Clickable(back) {
 
@@ -111,6 +112,7 @@ public class GUIGroupOverview {
 		// next button
 		if ((45 * (currentPage + 1)) <= groups.size()) {
 			ItemStack forward = new ItemStack(Material.ARROW);
+			forward.setCustomModelData(714);
 			ItemUtils.setDisplayName(forward, ChatColor.GOLD + "Go to next page");
 			Clickable forCl = new Clickable(forward) {
 
@@ -160,6 +162,7 @@ public class GUIGroupOverview {
 			switch (pType) {
 			case MEMBERS:
 				is = new ItemStack(Material.LEATHER_CHESTPLATE);
+				is.setCustomModelData(715);
 				ItemUtils.addLore(is, ChatColor.AQUA + "Your rank: Member");
 				break;
 			case MODS:
@@ -168,11 +171,15 @@ public class GUIGroupOverview {
 				break;
 			case ADMINS:
 				is = new ItemStack(Material.IRON_CHESTPLATE);
+				is.setCustomModelData(716);
 				ItemUtils.addLore(is, ChatColor.AQUA + "Your rank: Admin");
 				break;
 			case OWNER:
 				is = new ItemStack(Material.DIAMOND_CHESTPLATE);
+				is.setCustomModelData(717);
 				if (g.isOwner(p.getUniqueId())) {
+					//set custom for prim owner
+					is.setCustomModelData(718);
 					ItemUtils.addLore(is, ChatColor.AQUA
 							+ "Your rank: Primary owner");
 				} else {
@@ -188,6 +195,24 @@ public class GUIGroupOverview {
 			if (g.getName().equals(defaultGroupName)) {
 				List<String> lore = im.getLore();
 				lore.add(ChatColor.DARK_AQUA + "Your current default group");
+				switch(is.getCustomModelData()) {
+					//Member ID
+					case 715:
+						is.setCustomModelData(719);
+					//Mod ID
+					case 708:
+						is.setCustomModelData(720);
+					//Admin ID
+					case 716:
+						is.setCustomModelData(721);
+					//Owner ID
+					case 717:
+						is.setCustomModelData(722);
+					//PrimOwner ID
+					case 718:
+						is.setCustomModelData(723);
+					default:
+				}
 				im.setLore(lore);
 				im.addEnchant(Enchantment.DURABILITY, 1, true);
 			}
@@ -225,6 +250,7 @@ public class GUIGroupOverview {
 
 	private Clickable getCreateGroupClickable() {
 		ItemStack is = new ItemStack(Material.APPLE);
+		is.setCustomModelData(724);
 		ItemUtils.setDisplayName(is, ChatColor.GOLD + "Create group");
 		Clickable c = new Clickable(is) {
 
@@ -339,6 +365,7 @@ public class GUIGroupOverview {
 	
 	private Clickable getJoinGroupClickable() {
 		ItemStack is = new ItemStack(Material.CHEST);
+		is.setCustomModelData(725);
 		ItemUtils.setDisplayName(is, ChatColor.GOLD + "Join password protected group");
 		Clickable c = new Clickable(is) {
 			
