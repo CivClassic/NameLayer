@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>vg.civcraft.mc.namelayer</groupId>
+    <groupId>com.github.civclassic</groupId>
     <artifactId>namelayer-parent</artifactId>
     <version>1.0.0</version>
   </parent>
@@ -15,20 +15,20 @@
 
   <dependencies>
     <dependency>
-      <groupId>vg.civcraft.mc.namelayer</groupId>
-      <artifactId>namelayer-nms-v1_16_R3</artifactId>
+      <groupId>com.github.civclassic</groupId>
+      <artifactId>namelayer-nms-v1_17_R1</artifactId>
       <version>1.0.1</version>
     </dependency>
+		<dependency>
+			<groupId>io.papermc.paper</groupId>
+			<artifactId>paper</artifactId>
+			<version>1.17.1-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
     <dependency>
-      <groupId>com.destroystokyo.paper</groupId>
-      <artifactId>paper</artifactId>
-      <version>1.16.5-R0.1-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>vg.civcraft.mc.civmodcore</groupId>
+      <groupId>com.github.civclassic</groupId>
       <artifactId>CivModCore</artifactId>
-      <version>1.8.2</version>
+      <version>1.9.0</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -78,66 +78,11 @@
       </activation>
       <dependencies>
         <!-- NMS crap -->
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_8_R1</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_8_R2</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_8_R3</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_9_R1</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_9_R2</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_10_R1</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_11_R1</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_12_R1</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_13_R2</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_14_R1</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_16_R1</artifactId>
-          <version>1.0.1</version>
-        </dependency>
-        <dependency>
-          <groupId>vg.civcraft.mc.namelayer</groupId>
-          <artifactId>namelayer-nms-v1_16_R3</artifactId>
-          <version>1.0.1</version>
-        </dependency>
+				<dependency>
+					<groupId>com.github.civclassic</groupId>
+					<artifactId>namelayer-nms-v1_17_R1</artifactId>
+					<version>1.0.1</version>
+				</dependency>
       </dependencies>
     </profile>
   </profiles>

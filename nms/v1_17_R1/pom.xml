@@ -11,7 +11,7 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>namelayer-nms-v1_8_R3</artifactId>
+  <artifactId>namelayer-nms-v1_17_R1</artifactId>
   <version>1.0.1</version>
   <packaging>jar</packaging>
 
@@ -21,12 +21,12 @@
       <artifactId>namelayer-nms-interface</artifactId>
       <version>1.0.1</version>
     </dependency>
-    <dependency>
-      <groupId>org.spigotmc</groupId>
-      <artifactId>spigot</artifactId>
-      <version>1.8.8-R0.1-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
+		<dependency>
+			<groupId>io.papermc.paper</groupId>
+			<artifactId>paper</artifactId>
+			<version>1.17.1-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
   </dependencies>
 
 </project>

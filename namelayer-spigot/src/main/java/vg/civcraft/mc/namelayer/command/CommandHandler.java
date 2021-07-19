@@ -1,11 +1,13 @@
 package vg.civcraft.mc.namelayer.command;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
-import vg.civcraft.mc.civmodcore.command.Command;
+import co.aikar.commands.BukkitCommandCompletionContext;
+import co.aikar.commands.CommandCompletions;
+import java.util.Arrays;
+import javax.annotation.Nonnull;
+import vg.civcraft.mc.civmodcore.commands.CommandManager;
+import vg.civcraft.mc.namelayer.GroupManager;
+import vg.civcraft.mc.namelayer.NameLayerPlugin;
+import vg.civcraft.mc.namelayer.command.TabCompleters.GroupTabCompleter;
 import vg.civcraft.mc.namelayer.command.commands.AcceptInvite;
 import vg.civcraft.mc.namelayer.command.commands.AddBlacklist;
 import vg.civcraft.mc.namelayer.command.commands.ChangePlayerName;
@@ -24,7 +26,6 @@ import vg.civcraft.mc.namelayer.command.commands.ListGroups;
 import vg.civcraft.mc.namelayer.command.commands.ListMembers;
 import vg.civcraft.mc.namelayer.command.commands.ListPermissions;
 import vg.civcraft.mc.namelayer.command.commands.ListPlayerTypes;
-import vg.civcraft.mc.namelayer.command.commands.MergeGroups;
 import vg.civcraft.mc.namelayer.command.commands.ModifyPermissions;
 import vg.civcraft.mc.namelayer.command.commands.NameLayerGroupGui;
 import vg.civcraft.mc.namelayer.command.commands.PromotePlayer;
@@ -38,73 +39,58 @@ import vg.civcraft.mc.namelayer.command.commands.ShowBlacklist;
 import vg.civcraft.mc.namelayer.command.commands.ToggleAutoAcceptInvites;
 import vg.civcraft.mc.namelayer.command.commands.TransferGroup;
 import vg.civcraft.mc.namelayer.command.commands.UpdateName;
+import vg.civcraft.mc.namelayer.permission.PermissionType;
 
-public class CommandHandler {
-	private Map<String, Command> commands = new HashMap<>();
-	
+public class CommandHandler extends CommandManager{
+
+	public CommandHandler(NameLayerPlugin plugin) {
+		super(plugin);
+		init();
+	}
+
+	@Override
 	public void registerCommands(){
-		addCommands(new AcceptInvite("AcceptInvite"));
-		addCommands(new CreateGroup("CreateGroup"));
-		addCommands(new DeleteGroup("DeleteGroup"));
-		addCommands(new DisciplineGroup("DisiplineGroup"));
-		addCommands(new GlobalStats("GlobalStats"));
-		addCommands(new GroupStats("GroupStats"));
-		addCommands(new InfoDump("InfoDump"));
-		addCommands(new InvitePlayer("InvitePlayer"));
-		addCommands(new JoinGroup("JoinGroup"));
-		addCommands(new ListGroups("ListGroups"));
-		addCommands(new ListMembers("ListMembers"));
-		addCommands(new ListPermissions("ListPermissions"));
+		registerCommand(new AcceptInvite());
+		registerCommand(new CreateGroup());
+		registerCommand(new DeleteGroup());
+		registerCommand(new DisciplineGroup());
+		registerCommand(new GlobalStats());
+		registerCommand(new GroupStats());
+		registerCommand(new InfoDump());
+		registerCommand(new InvitePlayer());
+		registerCommand(new JoinGroup());
+		registerCommand(new ListGroups());
+		registerCommand(new ListMembers());
+		registerCommand(new ListPermissions());
 		//addCommands(new MergeGroups("MergeGroups")); Disabled as it's currently semi broken
-		addCommands(new ModifyPermissions("ModifyPermissions"));
-		addCommands(new RemoveMember("RemoveMember"));
-		addCommands(new SetPassword("SetPassword"));
-		addCommands(new TransferGroup("TransferGroup"));
-		addCommands(new LeaveGroup("LeaveGroup"));
-		addCommands(new ListPlayerTypes("ListPlayerTypes"));
-		addCommands(new ListCurrentInvites("ListCurrentInvites"));
-		addCommands(new ToggleAutoAcceptInvites("AutoAcceptInvites"));
-		addCommands(new PromotePlayer("PromotePlayer"));
-		addCommands(new RejectInvite("RejectInvite"));
-		addCommands(new RevokeInvite("RevokeInvite"));
-		addCommands(new ChangePlayerName("ChangePlayerName"));
-		addCommands(new SetDefaultGroup("SetDefaultGroup"));
-		addCommands(new GetDefaultGroup("GetDefaultGroup"));
-		addCommands(new UpdateName("UpdateName"));
-		addCommands(new AddBlacklist("AddBlacklist"));
-		addCommands(new RemoveBlacklist("RemoveBlacklist"));
-		addCommands(new ShowBlacklist("ShowBlacklist"));
-		addCommands(new NameLayerGroupGui("OpenGUI"));
-	}
-	
-	public void addCommands(Command command){
-			commands.put(command.getIdentifier().toLowerCase(), command);
-	}
-	
-	public boolean execute(CommandSender sender, org.bukkit.command.Command cmd, String[] args){
-		if (commands.containsKey(cmd.getName().toLowerCase())){
-			Command command = commands.get(cmd.getName().toLowerCase());
-			if (args.length < command.getMinArguments() || args.length > command.getMaxArguments()){
-				helpPlayer(command, sender);
-				return true;
-			}
-			command.execute(sender, args);
-		}
-		return true;
+		registerCommand(new ModifyPermissions());
+		registerCommand(new RemoveMember());
+		registerCommand(new SetPassword());
+		registerCommand(new TransferGroup());
+		registerCommand(new LeaveGroup());
+		registerCommand(new ListPlayerTypes());
+		registerCommand(new ListCurrentInvites());
+		registerCommand(new ToggleAutoAcceptInvites());
+		registerCommand(new PromotePlayer());
+		registerCommand(new RejectInvite());
+		registerCommand(new RevokeInvite());
+		registerCommand(new ChangePlayerName());
+		registerCommand(new SetDefaultGroup());
+		registerCommand(new GetDefaultGroup());
+		registerCommand(new UpdateName());
+		registerCommand(new AddBlacklist());
+		registerCommand(new RemoveBlacklist());
+		registerCommand(new ShowBlacklist());
+		registerCommand(new NameLayerGroupGui());
 	}
 
-	public List<String> complete(CommandSender sender, org.bukkit.command.Command cmd, String[] args){
-		if (commands.containsKey(cmd.getName().toLowerCase())){
-			Command command = commands.get(cmd.getName().toLowerCase());
-			return command.tabComplete(sender, args);
-		}
-		return null;
-	}
-
-	
-	public void helpPlayer(Command command, CommandSender sender){
-		sender.sendMessage(new StringBuilder().append(ChatColor.RED + "Command: " ).append(command.getName()).toString());
-		sender.sendMessage(new StringBuilder().append(ChatColor.RED + "Description: " ).append(command.getDescription()).toString());
-		sender.sendMessage(new StringBuilder().append(ChatColor.RED + "Usage: ").append(command.getUsage()).toString());
+	@Override
+	public void registerCompletions(@Nonnull CommandCompletions<BukkitCommandCompletionContext> completions) {
+		super.registerCompletions(completions);
+		completions.registerCompletion("NL_Groups", (context) -> GroupTabCompleter.complete(context.getInput(), null, context.getPlayer()));
+		completions.registerAsyncCompletion("NL_Ranks", (context) ->
+				Arrays.asList(GroupManager.PlayerType.getStringOfTypes().split(" ")));
+		completions.registerCompletion("NL_Perms", (context) ->
+				PermissionType.getAllPermissions().stream().map(PermissionType::getName).toList());
 	}
 }
